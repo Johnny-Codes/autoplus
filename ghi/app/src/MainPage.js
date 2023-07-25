@@ -1,4 +1,4 @@
-import CreateAutomobile from "./components/organisms/CreateAutomobile";
+import ServiceHistoryList from "./components/organisms/ServiceHistoryList";
 function MainPage() {
   return (
     <div className="px-4 py-5 my-5 text-center">
@@ -7,7 +7,7 @@ function MainPage() {
         <p className="lead mb-4">
           The premiere solution for automobile dealership management!
         </p>
-        <CreateAutomobile />
+        <ServiceHistoryList />
       </div>
     </div>
   );

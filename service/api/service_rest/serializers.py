@@ -9,6 +9,7 @@ from .models import (
 class ListTechnicianEncoder(ModelEncoder):
     model = Technician
     properties = (
+        "id",
         "first_name",
         "last_name",
         "employee_id",
@@ -27,6 +28,7 @@ class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = (
         "id",
+        "vin",
         "date_time",
         "reason",
         "status",

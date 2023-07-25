@@ -21,15 +21,12 @@ def poll(repeat=True):
             url = "http://project-beta-car-car-inventory-api-1:8000/api/automobiles/"
             r = requests.get(url)
             content = json.loads(r.content)
-            print("json content", content)
             for auto in content["autos"]:
                 try:
-                    print("try", auto)
                     obj = AutomobileVO.objects.get(vin=auto["vin"])
                     obj.sold = auto["sold"]
                     obj.save()
                 except AutomobileVO.DoesNotExist:
-                    print("except", auto)
                     obj = AutomobileVO(vin=auto["vin"], sold=auto["sold"])
                     obj.save()
             pass

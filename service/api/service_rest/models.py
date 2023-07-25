@@ -31,6 +31,7 @@ class AutomobileVO(models.Model):
 
 
 class Appointment(models.Model):
+    vin = models.CharField(max_length=17)
     date_time = models.DateTimeField()
     reason = models.TextField()
     STATUS_CHOICES = [

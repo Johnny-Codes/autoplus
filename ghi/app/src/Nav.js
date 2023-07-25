@@ -10,8 +10,8 @@ function Nav() {
         <NavLink className="navbar-brand" to="/manufacturers">
           Manufacturers
         </NavLink>
-        <NavLink className="navbar-brand" to="/manufacturers/create">
-          Create Manufacturer
+        <NavLink className="navbar-brand" to="/manufacturers/add-manufacturer">
+          Add Manufacturer
         </NavLink>
         <NavLink className="navbar-brand" to="/models">
           Car Models
@@ -24,6 +24,18 @@ function Nav() {
         </NavLink>
         <NavLink className="navbar-brand" to="/automobiles/add-automobile">
           Add Automobile
+        </NavLink>
+        <NavLink className="navbar-brand" to="/technicians">
+          Technicians
+        </NavLink>
+        <NavLink className="navbar-brand" to="/technicians/add-technician">
+          Add Technician
+        </NavLink>
+        <NavLink className="navbar-brand" to="/appointments">
+          Active Service Appointments
+        </NavLink>
+        <NavLink className="navbar-brand" to="/appointments/add-appointment">
+          Add Service Appointment
         </NavLink>
         <button
           className="navbar-toggler"

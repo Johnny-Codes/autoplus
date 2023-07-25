@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CreateButton from "../molecules/CreateButton";
 import FormInput from "../atoms/FormInput";
 import useApi from "../../hooks/useApi";
 import FormOption from "../atoms/FormOption";
-import useHandleSubmit from "../../hooks/useHandleSubmit";
 
 export default function CreateCarModel() {
   const [formData, setFormData] = useState({});
