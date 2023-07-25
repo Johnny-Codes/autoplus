@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import UpdateApptButton from "../molecules/UpdateApptButton";
 
 export default function ServiceAppointList() {
   const [sold, setSold] = useState([]);
   const [activeAppt, setActiveAppt] = useState([]);
-
+  // search bar https://plainenglish.io/blog/how-to-implement-a-search-bar-in-react-js
   const getAutoVOData = async () => {
     const url = "http://localhost:8070/api/automobiles/";
     const response = await fetch(url);

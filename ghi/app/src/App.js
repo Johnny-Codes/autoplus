@@ -11,6 +11,11 @@ import AddTechnician from "./components/organisms/AddTechnician";
 import TechnicianList from "./components/organisms/TechniciansList";
 import CreateServiceAppointment from "./components/organisms/CreateServiceAppointment";
 import ServiceAppointList from "./components/organisms/ServiceAppointmentList";
+import ServiceHistoryList from "./components/organisms/ServiceHistoryList";
+import AddSalesperson from "./components/organisms/AddSalesperson";
+import SalespeopleList from "./components/organisms/SalespeopleList";
+import CustomerList from "./components/organisms/CustomerList";
+import AddCustomer from "./components/organisms/AddCustomer";
 
 function App() {
   return (
@@ -41,6 +46,15 @@ function App() {
               path="add-appointment"
               element={<CreateServiceAppointment />}
             />
+            <Route path="history" element={<ServiceHistoryList />} />
+          </Route>
+          <Route path="salespeople">
+            <Route index element={<SalespeopleList />} />
+            <Route path="add-salesperson" element={<AddSalesperson />} />
+          </Route>
+          <Route path="customers">
+            <Route index element={<CustomerList />} />
+            <Route path="add-customer" element={<AddCustomer />} />
           </Route>
         </Routes>
       </div>

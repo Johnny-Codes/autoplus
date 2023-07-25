@@ -3,39 +3,54 @@ import { NavLink } from "react-router-dom";
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
-      <div className="container-fluid">
+      <div className="container-fluid flex-wrap">
         <NavLink className="navbar-brand" to="/">
-          CarCar
+          CarCar |
         </NavLink>
         <NavLink className="navbar-brand" to="/manufacturers">
-          Manufacturers
+          Manufacturers |
         </NavLink>
         <NavLink className="navbar-brand" to="/manufacturers/add-manufacturer">
-          Add Manufacturer
+          Add Manufacturer |
         </NavLink>
         <NavLink className="navbar-brand" to="/models">
-          Car Models
+          Car Models |
         </NavLink>
         <NavLink className="navbar-brand" to="/models/add-model">
-          Add Car Models
+          Add Car Models |
         </NavLink>
         <NavLink className="navbar-brand" to="/automobiles">
-          Automobiles
+          Automobiles |
         </NavLink>
         <NavLink className="navbar-brand" to="/automobiles/add-automobile">
-          Add Automobile
+          Add Automobile |
         </NavLink>
         <NavLink className="navbar-brand" to="/technicians">
-          Technicians
+          Technicians |
         </NavLink>
         <NavLink className="navbar-brand" to="/technicians/add-technician">
-          Add Technician
+          Add Technician |
         </NavLink>
         <NavLink className="navbar-brand" to="/appointments">
-          Active Service Appointments
+          Active Service Appointments |
         </NavLink>
         <NavLink className="navbar-brand" to="/appointments/add-appointment">
-          Add Service Appointment
+          Add Service Appointment |
+        </NavLink>
+        <NavLink className="navbar-brand" to="/appointments/history">
+          Service History |
+        </NavLink>
+        <NavLink className="navbar-brand" to="/salespeople">
+          Salespeople |
+        </NavLink>
+        <NavLink className="navbar-brand" to="/salespeople/add-salesperson">
+          Add Salesperson |
+        </NavLink>
+        <NavLink className="navbar-brand" to="/customers">
+          Customer List |
+        </NavLink>
+        <NavLink className="navbar-brand" to="/customers/add-customer">
+          Add Customer |
         </NavLink>
         <button
           className="navbar-toggler"
