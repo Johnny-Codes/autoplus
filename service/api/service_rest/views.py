@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_http_methods
-from .serializers import ListTechnicianEncoder, AppointmentEncoder
-from .models import Technician, Appointment
+from .serializers import (
+    ListTechnicianEncoder,
+    AppointmentEncoder,
+    AutomobileEncoder,
+)
+from .models import Technician, Appointment, AutomobileVO
 import json
 
 
@@ -79,3 +83,13 @@ def update_appointment(request, id):
             "deleted",
             safe=False,
         )
+
+
+@require_http_methods(["GET"])
+def list_automobiles(request):
+    autos = AutomobileVO.objects.all()
+    return JsonResponse(
+        {"autos": autos},
+        encoder=AutomobileEncoder,
+        safe=False,
+    )
