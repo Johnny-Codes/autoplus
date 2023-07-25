@@ -23,12 +23,15 @@ def poll(repeat=True):
             content = json.loads(r.content)
             print("json content", content)
             for auto in content["autos"]:
-                _sold = auto["sold"]
-                _vin = auto["vin"]
-                AutomobileVO.objects.update_or_create(
-                    vin=_vin,
-                    sold=_sold,
-                )
+                try:
+                    print("try", auto)
+                    obj = AutomobileVO.objects.get(vin=auto["vin"])
+                    obj.sold = auto["sold"]
+                    obj.save()
+                except AutomobileVO.DoesNotExist:
+                    print("except", auto)
+                    obj = AutomobileVO(vin=auto["vin"], sold=auto["sold"])
+                    obj.save()
             pass
         except Exception as e:
             print(e, file=sys.stderr)
