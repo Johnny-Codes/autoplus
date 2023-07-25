@@ -50,14 +50,10 @@ def appointment_view(request):
         )
     else:
         content = json.loads(request.body)
-        print("----------content", content)
         try:
             tech = Technician.objects.get(id=content["technician"])
-            print("------------ TECH ", tech)
-            print(tech.id)
             content["technician"] = tech
         except Technician.DoesNotExist:
-            print("technician does not exist")
             return JsonResponse(
                 "tech does not exist",
                 safe=False,
