@@ -43,7 +43,7 @@ services:
       context: ./service/api
       dockerfile: ./Dockerfile.dev
     ports:
-      - "8080:8000"
+      - "8070:8000"
     volumes:
       - ./service/api:/app
     depends_on:

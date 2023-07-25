@@ -6,7 +6,6 @@ from .models import (
 )
 
 
-# Register your models here.
 @admin.register(AutomobileVO)
 class AutomobileVOAdmin(admin.ModelAdmin):
     pass

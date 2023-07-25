@@ -5,7 +5,10 @@ from django.db import models
 class Technician(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    employee_id = models.CharField(max_length=50)
+    employee_id = models.CharField(
+        max_length=50,
+        unique=True,
+    )
 
 
 class AutomobileVO(models.Model):
@@ -25,7 +28,6 @@ class Appointment(models.Model):
         choices=STATUS_CHOICES,
         max_length=25,
         default="Created",
-        unique=True,
     )
     customer = models.CharField(max_length=64)
     technician = models.ForeignKey(
