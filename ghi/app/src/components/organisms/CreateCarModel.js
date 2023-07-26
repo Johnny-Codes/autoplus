@@ -33,6 +33,31 @@ export default function CreateCarModel() {
     } catch (error) {}
   };
 
+  const getCarModelUrl = async (e) => {
+    e.preventDefault();
+    const url = "http://localhost:8100/api/models/get-picture/";
+    const data = {};
+    data.name = formData.name;
+    data.manufacturer_id = formData.manufacturer_id;
+    const json = JSON.stringify(data);
+    const fetchConfig = {
+      method: "post",
+      body: json,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await fetch(url, fetchConfig);
+      if (response.ok) {
+        const json = await response.json();
+        setFormData({ ...formData, picture_url: json });
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   return (
     <div className="form">
       <h1>Add Car Model</h1>
@@ -65,6 +90,7 @@ export default function CreateCarModel() {
               );
             })}
         </select>
+
         <FormInput
           required
           type="text"
@@ -76,6 +102,11 @@ export default function CreateCarModel() {
         />
         <CreateButton />
       </form>
+      <button onClick={getCarModelUrl}>Get a Picture</button>
+      <p>
+        To use the "Get a Picture" button please create a .env with a PEXEL API
+        key labeled "PEXELS_API_KEY"
+      </p>
     </div>
   );
 }
