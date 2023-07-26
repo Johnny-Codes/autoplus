@@ -1,5 +1,6 @@
 import React from "react";
 import useApi from "../../hooks/useApi";
+import "./CarModelsList.css";
 
 export default function CarModelsList() {
   const data = useApi({ url: "http://localhost:8100/api/models/" });

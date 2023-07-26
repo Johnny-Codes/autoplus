@@ -38,6 +38,7 @@ services:
       DATABASE_URL: postgres://inventory:password@database:5432/inventory
       WAIT_HOSTS: database:5432
       WAIT_TIMEOUT: 240
+      PEXELS_API_KEY: ${PEXELS_API_KEY}
   service-api:
     build:
       context: ./service/api
