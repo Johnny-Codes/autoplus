@@ -24,12 +24,9 @@ export default function AddTechnician() {
     try {
       const response = await fetch(url, fetchConfig);
       if (response.ok) {
-        console.log("cool you created a tech");
         setFormData({});
       }
-    } catch (error) {
-      console.log("oops you messed up");
-    }
+    } catch (error) {}
   };
 
   return (

@@ -28,14 +28,10 @@ export default function CreateCarModel() {
     try {
       const response = await fetch(url, fetchConfig);
       if (response.ok) {
-        console.log("yay you made a model");
+        setFormData({});
       }
     } catch (error) {}
   };
-  //   const handleSubmit = useHandleSubmit({
-  //     url: "http://localhost:8100/api/models/",
-  //   });
-  //   useHandleSubmit({e, url: "http://localhost:8100/api/models/"})
 
   return (
     <div className="form">

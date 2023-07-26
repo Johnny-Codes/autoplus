@@ -18,9 +18,7 @@ export default function EmployeeSalesList() {
         newArr.push(sale);
       }
     }
-    console.log("new arr", newArr);
     setEmployeeSales(newArr);
-    console.log("employee sales", employeeSales);
   };
 
   return (
@@ -56,7 +54,7 @@ export default function EmployeeSalesList() {
           {employeeSales &&
             employeeSales.map((sales) => {
               return (
-                <tr>
+                <tr key={sales.id}>
                   <td>{`${sales.salesperson.first_name} ${sales.salesperson.last_name}`}</td>
                   <td>{`${sales.customer.first_name} ${sales.customer.last_name}`}</td>
                   <td>{sales.automobile.vin}</td>

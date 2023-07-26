@@ -12,14 +12,12 @@ export default function CreateServiceAppointment() {
 
   const handleFormChanges = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const json = JSON.stringify(formData);
-    console.log("json", json);
     const url = "http://localhost:8070/api/appointments/";
     const fetchConfig = {
       method: "post",

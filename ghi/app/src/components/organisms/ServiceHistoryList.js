@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import FormatTime from "../molecules/FormatTime";
+import FormatDate from "../molecules/FormatDate";
 
 export default function ServiceHistoryList() {
   const [sold, setSold] = useState([]);
@@ -79,13 +81,15 @@ export default function ServiceHistoryList() {
         <tbody>
           {filteredAppts &&
             filteredAppts.map((appt) => {
+              const formattedTime = FormatTime(appt.date_time);
+              const formattedDate = FormatDate(appt.date_time);
               return (
                 <tr key={appt.id}>
                   <td>{appt.vin}</td>
                   <td>{sold.includes(appt.vin) ? "Yes" : "No"}</td>
                   <td>{appt.customer}</td>
-                  <td>{appt.date_time}</td>
-                  <td>{appt.date_time}</td>
+                  <td>{formattedDate}</td>
+                  <td>{formattedTime}</td>
                   <td>{appt.technician.employee_id}</td>
                   <td>{appt.reason}</td>
                   <td>{appt.status}</td>

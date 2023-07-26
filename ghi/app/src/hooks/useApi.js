@@ -9,7 +9,6 @@ export default function useApi(props) {
       if (response.ok) {
         const data = await response.json();
         setData(data);
-        console.log("data", data);
       }
     } catch (error) {
       console.log({ error });

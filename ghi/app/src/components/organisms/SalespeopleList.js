@@ -4,7 +4,6 @@ import useApi from "../../hooks/useApi";
 export default function SalespeopleList() {
   const sData = useApi({ url: "http://localhost:8090/api/salespeople/" });
   const salespeople = sData.salespeople;
-  console.log("salespeople", salespeople);
 
   return (
     <div className="salespeople-list">
@@ -20,7 +19,7 @@ export default function SalespeopleList() {
           {salespeople &&
             salespeople.map((sales) => {
               return (
-                <tr>
+                <tr key={sales.employee_id}>
                   <td>{`${sales.first_name} ${sales.last_name}`}</td>
                   <td>{sales.employee_id}</td>
                 </tr>

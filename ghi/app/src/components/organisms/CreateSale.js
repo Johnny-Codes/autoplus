@@ -50,15 +50,10 @@ export default function CreateSale() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     for (const car of carsForSale) {
-      console.log("car", typeof car.id);
-      console.log("auto", typeof formData.automobile);
       if (car.id == formData.automobile) {
-        console.log("car vin", car.vin);
         const data = { sold: true };
         const json = JSON.stringify(data);
-        console.log("json", json);
         const updateUrl = `http://localhost:8100/api/automobiles/${car.vin}/`;
-        console.log("update url", updateUrl);
         const fetchConfig = {
           method: "put",
           body: json,
@@ -69,7 +64,7 @@ export default function CreateSale() {
         try {
           const response = await fetch(updateUrl, fetchConfig);
         } catch (error) {
-          console.log("error updating vehicle", error);
+          console.log(error);
         }
       }
     }
@@ -78,7 +73,6 @@ export default function CreateSale() {
       formData: formData,
     });
     setFormData({});
-    window.location.reload();
   };
 
   return (

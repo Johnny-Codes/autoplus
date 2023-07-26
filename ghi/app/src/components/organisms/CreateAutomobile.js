@@ -29,12 +29,8 @@ export default function CreateAutomobile() {
       const response = await fetch(url, fetchConfig);
       if (response.ok) {
         setFormData({});
-      } else {
-        console.log("error making auto");
       }
-    } catch (error) {
-      console.log("error", error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -55,7 +51,7 @@ export default function CreateAutomobile() {
           id="year"
           placeholder="Year"
           onChange={handleFormChanges}
-          value={formData.year || 2000}
+          value={formData.year || ""}
         />
         <FormInput
           type="text"

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UpdateApptButton from "../molecules/UpdateApptButton";
+import FormatDate from "../molecules/FormatDate";
+import FormatTime from "../molecules/FormatTime";
 
 export default function ServiceAppointList() {
   const [sold, setSold] = useState([]);
@@ -29,17 +31,15 @@ export default function ServiceAppointList() {
       const response = await fetch(url);
       if (response.ok) {
         const json = await response.json();
-        console.log("resposne json", json);
+
         const appts = json.appointments;
         for (const appt of appts) {
           if (appt.status === "Created") {
             activeAppts.push(appt);
-            console.log("active? ", appt.vin);
           }
         }
       }
       setActiveAppt(activeAppts);
-      console.log("active appts", activeAppt);
     } catch (error) {
       console.log("error", error);
     }
@@ -69,13 +69,15 @@ export default function ServiceAppointList() {
         <tbody>
           {activeAppt &&
             activeAppt.map((appt) => {
+              const formattedDate = FormatDate(appt.date_time);
+              const formattedTime = FormatTime(appt.date_time);
               return (
                 <tr key={appt.id}>
                   <td>{appt.vin}</td>
                   <td>{sold.includes(appt.vin) ? "Yes" : "No"}</td>
                   <td>{appt.customer}</td>
-                  <td>{appt.date_time}</td>
-                  <td>{appt.date_time}</td>
+                  <td>{formattedDate}</td>
+                  <td>{formattedTime}</td>
                   <td>{appt.technician.employee_id}</td>
                   <td>{appt.reason}</td>
                   <td>
