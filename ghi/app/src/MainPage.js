@@ -1,5 +1,4 @@
-import AddCustomer from "./components/organisms/AddCustomer";
-import CustomerList from "./components/organisms/CustomerList";
+import EmployeeSalesList from "./components/organisms/EmployeeSalesList";
 
 function MainPage() {
   return (
@@ -7,10 +6,10 @@ function MainPage() {
       <h1 className="display-5 fw-bold">CarCar</h1>
       <div className="col-lg-6 mx-auto">
         <p className="lead mb-4">
-          The (not-so) premiere solution for automobile dealership management!
+          The premiere solution for automobile dealership management!
         </p>
       </div>
-      <CustomerList />
+      <EmployeeSalesList />
     </div>
   );
 }

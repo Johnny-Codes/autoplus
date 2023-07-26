@@ -10,6 +10,7 @@ from .models import (
 class AutomobileEncoder(ModelEncoder):
     model = AutomobileVO
     properties = (
+        "id",
         "vin",
         "sold",
     )

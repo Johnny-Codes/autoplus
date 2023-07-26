@@ -16,6 +16,9 @@ import AddSalesperson from "./components/organisms/AddSalesperson";
 import SalespeopleList from "./components/organisms/SalespeopleList";
 import CustomerList from "./components/organisms/CustomerList";
 import AddCustomer from "./components/organisms/AddCustomer";
+import CreateSale from "./components/organisms/CreateSale";
+import SalesList from "./components/organisms/SalesList";
+import EmployeeSalesList from "./components/organisms/EmployeeSalesList";
 
 function App() {
   return (
@@ -55,6 +58,11 @@ function App() {
           <Route path="customers">
             <Route index element={<CustomerList />} />
             <Route path="add-customer" element={<AddCustomer />} />
+          </Route>
+          <Route path="sales">
+            <Route index element={<SalesList />} />
+            <Route path="add-sale" element={<CreateSale />} />
+            <Route path="employee-sales" element={<EmployeeSalesList />} />
           </Route>
         </Routes>
       </div>

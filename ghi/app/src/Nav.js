@@ -52,6 +52,15 @@ function Nav() {
         <NavLink className="navbar-brand" to="/customers/add-customer">
           Add Customer |
         </NavLink>
+        <NavLink className="navbar-brand" to="/sales">
+          Sales List |
+        </NavLink>
+        <NavLink className="navbar-brand" to="/sales/employee-sales">
+          Employee Sales |
+        </NavLink>
+        <NavLink className="navbar-brand" to="/sales/add-sale">
+          Add Sale |
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"

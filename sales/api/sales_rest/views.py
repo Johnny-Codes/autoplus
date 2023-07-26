@@ -105,7 +105,7 @@ def sale_view(request):
     else:
         content = json.loads(request.body)
         try:
-            automobile = AutomobileVO.objects.get(vin=content["vin"])
+            automobile = AutomobileVO.objects.get(id=content["automobile"])
             salesperson = Salesperson.objects.get(id=content["salesperson"])
             customer = Customer.objects.get(id=content["customer"])
             content["automobile"] = automobile
@@ -116,8 +116,9 @@ def sale_view(request):
                 "you done fd up somewhere",
                 safe=False,
             )
+        Sale.objects.create(**content)
         return JsonResponse(
-            "yay",
+            "Sale recorded",
             safe=False,
         )
 
