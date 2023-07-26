@@ -38,7 +38,7 @@ def technicians_view(request):
                                       technician"
                 }
             )
-            response.status_code = 400
+            response.status_code = 404
             return response
 
 
@@ -55,7 +55,7 @@ def delete_tech(request, id):
             )
         except Technician.DoesNotExist:
             response = JsonResponse({"message": "Technician does not exist"})
-            response.status_code = 400
+            response.status_code = 404
             return response
 
 
@@ -75,7 +75,7 @@ def appointment_view(request):
             content["technician"] = tech
         except Technician.DoesNotExist:
             response = JsonResponse({"message": "technician does not exist"})
-            response.status_code = 400
+            response.status_code = 404
             return response
 
         appt = Appointment.objects.update_or_create(**content)

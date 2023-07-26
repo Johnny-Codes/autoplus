@@ -90,7 +90,7 @@ def delete_customer(request, id):
         )
     except Customer.DoesNotExist:
         response = JsonResponse({"message": "Does not exist"})
-        response.status_code = 400
+        response.status_code = 404
         return response
 
 
