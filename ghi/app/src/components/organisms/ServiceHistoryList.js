@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 
-export default function ServiceAppointList() {
+export default function ServiceHistoryList() {
   const [sold, setSold] = useState([]);
-  const [activeAppt, setActiveAppt] = useState([]);
-  // search bar https://plainenglish.io/blog/how-to-implement-a-search-bar-in-react-js
+  const [appts, setAppts] = useState([]);
+  const [filteredAppts, setFilteredAppts] = useState([]);
+
+  const handleSearchBar = (e) => {
+    setFilteredAppts(appts);
+    const filterAppts = appts.filter((appt) =>
+      appt.vin.includes(e.target.value)
+    );
+    setFilteredAppts(filterAppts);
+  };
+
   const getAutoVOData = async () => {
     const url = "http://localhost:8070/api/automobiles/";
     const response = await fetch(url);
@@ -21,7 +30,7 @@ export default function ServiceAppointList() {
     }
   };
 
-  const getActiveAppts = async () => {
+  const getAppts = async () => {
     const url = "http://localhost:8070/api/appointments/";
     try {
       const activeAppts = [];
@@ -33,7 +42,8 @@ export default function ServiceAppointList() {
           activeAppts.push(appt);
         }
       }
-      setActiveAppt(activeAppts);
+      setAppts(activeAppts);
+      setFilteredAppts(activeAppts);
     } catch (error) {
       console.log("error", error);
     }
@@ -41,13 +51,18 @@ export default function ServiceAppointList() {
 
   useEffect(() => {
     getAutoVOData();
-    getActiveAppts();
+    getAppts();
   }, []);
 
   return (
     <div className="appointment-list">
       <h1>Service History</h1>
-      <input type="text" placeholder="Search by VIN" />
+      <input
+        type="text"
+        placeholder="Search by VIN"
+        onChange={handleSearchBar}
+        className="form-control"
+      />
       <table className="table table-striped">
         <thead>
           <tr>
@@ -62,8 +77,8 @@ export default function ServiceAppointList() {
           </tr>
         </thead>
         <tbody>
-          {activeAppt &&
-            activeAppt.map((appt) => {
+          {filteredAppts &&
+            filteredAppts.map((appt) => {
               return (
                 <tr key={appt.id}>
                   <td>{appt.vin}</td>

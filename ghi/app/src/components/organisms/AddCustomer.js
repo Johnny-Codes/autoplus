@@ -53,12 +53,12 @@ export default function AddCustomer() {
         />
         <FormInput
           required
-          type="number"
+          type="text"
           name="phone_number"
           id="phone_number"
           onChange={handleFormChange}
-          value={formData.phone_number || "Phone Number"}
-          placeholder="Phone Number"
+          value={formData.phone_number || ""}
+          placeholder="Phone Number (281) 777-5555)"
         />
         <CreateButton />
       </form>
