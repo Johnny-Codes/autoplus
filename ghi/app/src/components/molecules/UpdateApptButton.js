@@ -7,7 +7,12 @@ export default function UpdateApptButton(props) {
     data.id = props.id;
     data.status = props.status;
     const json = JSON.stringify(data);
-    const url = `http://localhost:8070/api/appointments/${props.id}/cancel`;
+    let url;
+    if (props.status === "Canceled") {
+      url = `http://localhost:8070/api/appointments/${props.id}/cancel/`;
+    } else {
+      url = `http://localhost:8070/api/appointments/${props.id}/finish/`;
+    }
     const fetchConfig = {
       method: "put",
       body: json,
@@ -18,11 +23,10 @@ export default function UpdateApptButton(props) {
     try {
       const response = await fetch(url, fetchConfig);
       if (response.ok) {
-        console.log("cool it was canceled");
         window.location.reload();
       }
     } catch (error) {
-      console.log("error", error);
+      console.log(error);
     }
   };
 

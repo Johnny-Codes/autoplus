@@ -37,9 +37,10 @@ def salesperson_view(request):
         )
     else:
         content = json.loads(request.body)
-        Salesperson.objects.create(**content)
+        salesperson = Salesperson.objects.create(**content)
         return JsonResponse(
-            "salesperson created",
+            salesperson,
+            encoder=SalesPersonEncoder,
             safe=False,
         )
 
@@ -55,7 +56,7 @@ def delete_salesperson(request, id):
         )
     except Salesperson.DoesNotExist:
         return JsonResponse(
-            "they were already fired and/or were never hired!",
+            {"message": "they were already fired and/or were never hired!"},
             safe=False,
         )
 
@@ -71,9 +72,10 @@ def customer_view(request):
         )
     else:
         content = json.loads(request.body)
-        Customer.objects.create(**content)
+        customer = Customer.objects.create(**content)
         return JsonResponse(
-            "customer created",
+            customer,
+            encoder=CustomerEncoder,
             safe=False,
         )
 
@@ -87,10 +89,9 @@ def delete_customer(request, id):
             safe=False,
         )
     except Customer.DoesNotExist:
-        return JsonResponse(
-            "customer don't exist idiot",
-            safe=False,
-        )
+        response = JsonResponse({"message": "Does not exist"})
+        response.status_code = 400
+        return response
 
 
 @require_http_methods(["GET", "POST"])
@@ -111,14 +112,22 @@ def sale_view(request):
             content["automobile"] = automobile
             content["salesperson"] = salesperson
             content["customer"] = customer
-        except AutomobileVO.DoesNotExist or Salesperson.DoesNotExist or Customer.DoesNotExist:
-            return JsonResponse(
-                "you done fd up somewhere",
-                safe=False,
-            )
-        Sale.objects.create(**content)
+        except AutomobileVO.DoesNotExist:
+            response = JsonResponse({"message": "automobile does not exist"})
+            response.status_code = 400
+            return response
+        except Salesperson.DoesNotExist:
+            response = JsonResponse({"message": "salesperson does not exist"})
+            response.status_code = 400
+            return response
+        except Customer.DoesNotExist:
+            response = JsonResponse({"message": "customer does not exist"})
+            response.status_code = 400
+            return response
+        sale = Sale.objects.create(**content)
         return JsonResponse(
-            "Sale recorded",
+            sale,
+            encoder=SaleEncoder,
             safe=False,
         )
 
@@ -132,7 +141,6 @@ def delete_sale(request, id):
             safe=False,
         )
     except Sale.DoesNotExist:
-        return JsonResponse(
-            "this sale does not exist",
-            safe=False,
-        )
+        response = JsonResponse({"message": "this sale does not exist"})
+        response.status_code = 400
+        return response

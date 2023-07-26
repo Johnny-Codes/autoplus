@@ -14,7 +14,7 @@ urlpatterns = [
         name="technicians_view",
     ),
     path(
-        "technicians/<int:id>/delete/",
+        "technicians/<int:id>/",
         delete_tech,
         name="delete technician",
     ),
@@ -24,12 +24,12 @@ urlpatterns = [
         name="appointment_view",
     ),
     path(
-        "appointments/<int:id>/cancel",
+        "appointments/<int:id>/cancel/",
         update_appointment,
         name="cancel_appointment",
     ),
     path(
-        "appointments/<int:id>/finish",
+        "appointments/<int:id>/finish/",
         update_appointment,
         name="finish_appointment",
     ),

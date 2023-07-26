@@ -21,26 +21,42 @@ def technicians_view(request):
             safe=False,
         )
     else:
-        content = json.loads(request.body)
-        tech = Technician.objects.create(**content)
-        tech_id = tech.id
-        get_tech = Technician.objects.get(id=tech_id)
-        name = f"{get_tech.id} {get_tech.first_name} {get_tech.last_name} created"
-        return JsonResponse(
-            name,
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            tech = Technician.objects.create(**content)
+            tech_id = tech.id
+            technician = Technician.objects.get(id=tech_id)
+            return JsonResponse(
+                technician,
+                encoder=ListTechnicianEncoder,
+                safe=False,
+            )
+        except:
+            response = JsonResponse(
+                {
+                    "message": "Could not create the\
+                                      technician"
+                }
+            )
+            response.status_code = 400
+            return response
 
 
 @require_http_methods(["DELETE"])
 def delete_tech(request, id):
     if request.method == "DELETE":
-        tech = Technician.objects.get(id=id)
-        tech.delete()
-        return JsonResponse(
-            {"successfully deleted": "technician"},
-            safe=False,
-        )
+        try:
+            tech = Technician.objects.get(id=id)
+            tech.delete()
+            return JsonResponse(
+                tech,
+                encoder=ListTechnicianEncoder,
+                safe=False,
+            )
+        except Technician.DoesNotExist:
+            response = JsonResponse({"message": "Technician does not exist"})
+            response.status_code = 400
+            return response
 
 
 @require_http_methods(["GET", "POST"])
@@ -58,31 +74,47 @@ def appointment_view(request):
             tech = Technician.objects.get(id=content["technician"])
             content["technician"] = tech
         except Technician.DoesNotExist:
-            return JsonResponse(
-                "tech does not exist",
-                safe=False,
-            )
-        Appointment.objects.update_or_create(**content)
-        return JsonResponse("cool", safe=False)
+            response = JsonResponse({"message": "technician does not exist"})
+            response.status_code = 400
+            return response
+
+        appt = Appointment.objects.update_or_create(**content)
+        return JsonResponse(appt, encoder=AppointmentEncoder, safe=False)
 
 
 @require_http_methods(["PUT", "DELETE"])
 def update_appointment(request, id):
-    appt = Appointment.objects.get(id=id)
     if request.method == "PUT":
-        data = json.loads(request.body)
-        appt.status = data["status"]
-        appt.save()
-        return JsonResponse(
-            "updated",
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            appt = Appointment.objects.get(id=id)
+            props = ["status"]
+            for prop in props:
+                if prop in content:
+                    setattr(appt, prop, content[prop])
+            appt.save()
+            return JsonResponse(
+                appt,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
     else:
-        appt.delete()
-        return JsonResponse(
-            "deleted",
-            safe=False,
-        )
+        try:
+            appt = Appointment.objects.get(id=id)
+            appt.delete()
+            return JsonResponse(
+                appt,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+        except Appointment.DoesNotExist:
+            response = JsonResponse({"message": "Does not exist"})
+            response.status_code = 404
+            return response
 
 
 @require_http_methods(["GET"])
