@@ -25,6 +25,7 @@ function MainPage() {
       console.log("error", error);
     }
     setCarsForSale(newArr);
+    setSelectedCar([...selectedCar, newArr[0]]);
   };
 
   useEffect(() => {
@@ -33,8 +34,6 @@ function MainPage() {
 
   const handleViewCar = async (e) => {
     const url = `http://localhost:8100${e.target.value}`;
-    const detailView = document.querySelector(".car-detail-view");
-    detailView.classList.remove("hidden");
     const buttons = document.querySelectorAll("button");
     for (const b of buttons) {
       b.classList.remove("selected-car");
@@ -92,7 +91,7 @@ function MainPage() {
           </tbody>
         </table>
       </div>
-      <div className="hidden col-lg-4 car-detail-view ">
+      <div className="col-lg-4 car-detail-view ">
         {selectedCar &&
           selectedCar.map((car) => {
             return (

@@ -22,7 +22,7 @@ export default function FakeSalespeople() {
       <h1>Meet our Sales Team</h1>
       {fakePeople &&
         fakePeople.map((p) => {
-          return <FakeSalespeopleBio p={p} />;
+          return <FakeSalespeopleBio p={p} key={p.cell} />;
         })}
     </div>
   );

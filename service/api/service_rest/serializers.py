@@ -19,6 +19,7 @@ class ListTechnicianEncoder(ModelEncoder):
 class AutomobileEncoder(ModelEncoder):
     model = AutomobileVO
     properties = (
+        "id",
         "vin",
         "sold",
     )

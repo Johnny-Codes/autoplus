@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
 import useApi from "../../hooks/useApi";
-
+import EditManufacturerButton from "../molecules/EditManufacturerButton";
 export default function ManufacturersList() {
   const manufacturers = useApi({
     url: "http://localhost:8100/api/manufacturers/",
@@ -14,6 +13,7 @@ export default function ManufacturersList() {
         <thead>
           <tr>
             <th>Name</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +22,9 @@ export default function ManufacturersList() {
               return (
                 <tr key={manufacturer.href}>
                   <td>{manufacturer.name}</td>
+                  <td value={manufacturer.id}>
+                    <EditManufacturerButton id={manufacturer.id} />
+                  </td>
                 </tr>
               );
             })}
