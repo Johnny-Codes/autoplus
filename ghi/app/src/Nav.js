@@ -159,6 +159,10 @@ function Nav() {
           </ul>
         </div>
 
+        <NavLink className="navbar-brand" to="/galactic-vehicles">
+          | Check out our Galaxy Vehicles
+        </NavLink>
+
         <button
           className="navbar-toggler"
           type="button"

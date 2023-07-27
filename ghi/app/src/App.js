@@ -19,7 +19,7 @@ import AddCustomer from "./components/organisms/AddCustomer";
 import CreateSale from "./components/organisms/CreateSale";
 import SalesList from "./components/organisms/SalesList";
 import EmployeeSalesList from "./components/organisms/EmployeeSalesList";
-
+import GalacticVehicles from "./components/organisms/GalacticVehicles";
 function App() {
   return (
     <BrowserRouter>
@@ -64,6 +64,7 @@ function App() {
             <Route path="add-sale" element={<CreateSale />} />
             <Route path="employee-sales" element={<EmployeeSalesList />} />
           </Route>
+          <Route path="galactic-vehicles" element={<GalacticVehicles />} />
         </Routes>
       </div>
     </BrowserRouter>
