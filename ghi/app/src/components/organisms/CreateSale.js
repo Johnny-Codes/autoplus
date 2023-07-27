@@ -43,7 +43,6 @@ export default function CreateSale() {
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({ ...formData, [name]: value });
   };
 
@@ -64,12 +63,13 @@ export default function CreateSale() {
         try {
           const response = await fetch(updateUrl, fetchConfig);
         } catch (error) {
-          console.log(error);
+          console.log("error", error);
         }
       }
     }
     HandleFormSubmit({
       url: "http://localhost:8090/api/sales/",
+
       formData: formData,
     });
     setFormData({});

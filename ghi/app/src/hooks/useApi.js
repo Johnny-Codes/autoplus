@@ -11,7 +11,7 @@ export default function useApi(props) {
         setData(data);
       }
     } catch (error) {
-      console.log({ error });
+      console.log("error", error);
     }
   };
 

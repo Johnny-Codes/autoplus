@@ -11,9 +11,6 @@ export default async function HandleFormSubmit({ formData, url }) {
   };
   try {
     const response = await fetch(url, fetchConfig);
-    if (!response.ok) {
-      window.alert("something went wrong");
-    }
   } catch (error) {
     window.alert({ error });
   }

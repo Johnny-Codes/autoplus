@@ -7,7 +7,6 @@ export default function CreateManufacturer() {
 
   const handleFormChanges = (e) => {
     const { name, value } = e.target;
-    console.log("value", value);
     setFormData({ ...formData, [name]: value });
   };
 
@@ -24,7 +23,6 @@ export default function CreateManufacturer() {
     };
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
-      console.log("success");
       setFormData([]);
     }
   };

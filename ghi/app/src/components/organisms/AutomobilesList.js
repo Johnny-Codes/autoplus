@@ -4,9 +4,8 @@ import "./AutomobilesList.css";
 
 export default function AutomobileList() {
   const data = useApi({ url: "http://localhost:8100/api/automobiles/" });
-  console.log("automobile data", data);
+
   const automobiles = data.autos;
-  console.log(automobiles);
 
   return (
     <div className="automobile-list">

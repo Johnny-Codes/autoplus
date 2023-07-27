@@ -1,0 +1,10 @@
+.fake-salesperson-image {
+  border-radius: 50%;
+}
+
+.fake-salespeople {
+  border: 1px solid black;
+  border-radius: 0.5em;
+  margin: 2em;
+  padding: 1em;
+}

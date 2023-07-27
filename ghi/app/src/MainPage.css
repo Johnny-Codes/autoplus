@@ -1,0 +1,30 @@
+.car-detail-view {
+  border: black 1px solid;
+  border-radius: 0.5em;
+  align-items: center;
+}
+
+h2 {
+  margin: 1em;
+  text-align: center;
+}
+
+.car-detail-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+h4 {
+  text-align: center;
+}
+
+.selected-car {
+  background-color: rgb(25, 135, 84);
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
