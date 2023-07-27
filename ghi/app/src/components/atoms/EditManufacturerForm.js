@@ -1,11 +1,12 @@
 import { useState } from "react";
 import FormInput from "./FormInput";
 import Button from "./Button";
-export default function EditManufacturerForm({ id, onClose }) {
-  const [name, setName] = useState("");
+export default function EditManufacturerForm({ id, onClose, name }) {
+  const [names, setNames] = useState("");
 
   const handleChange = (e) => {
-    setName(e.target.value);
+    setNames(e.target.value);
+    console.log("name", name);
   };
 
   const handleSubmit = async () => {
@@ -33,7 +34,7 @@ export default function EditManufacturerForm({ id, onClose }) {
       <form onSubmit={handleSubmit}>
         <FormInput
           type="text"
-          placeholder="Name"
+          placeholder={name}
           name="name"
           onChange={handleChange}
         />
