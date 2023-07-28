@@ -69,7 +69,9 @@ export default function CreateAutomobile() {
           <option value="">Choose a Vehicle Model</option>
           {models &&
             models.map((model) => {
-              return <FormOption text={model.name} value={model.id} />;
+              return (
+                <FormOption key={model.id} text={model.name} value={model.id} />
+              );
             })}
         </select>
         <CreateButton />

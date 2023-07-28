@@ -65,73 +65,81 @@ function MainPage() {
       </div>
       <div className="col-lg-8">
         <h1>Vehicles for Sale</h1>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Manufacturer</th>
-              <th>Model</th>
-              <th>Year</th>
-              <th>View</th>
-            </tr>
-          </thead>
-          <tbody>
-            {carsForSale &&
-              carsForSale.map((car) => {
-                return (
-                  <tr key={car.href} onClick={handleViewCar}>
-                    <td>{car.model.manufacturer.name}</td>
-                    <td>{car.model.name}</td>
-                    <td>{car.year}</td>
-                    <td>
-                      <Button text="View" value={car.href} />
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
-      </div>
-      <div className="col-lg-4 car-detail-view ">
-        {selectedCar &&
-          selectedCar.map((car) => {
-            return (
-              <div key={car.id}>
-                <h2>
-                  {car.year} {car.model.manufacturer.name} {car.model.name}
-                </h2>
-                <hr></hr>
-
-                <img
-                  className="car-detail-image"
-                  src={`${car.model.picture_url}`}
-                  alt={`${car.model.name}`}
-                />
-                <hr></hr>
-
-                <h4>Details</h4>
-
-                <table className="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Color</th>
-                      <th>VIN</th>
-                      <th>Miles</th>
-                      <th>Seats</th>
+        {carsForSale?.length === 0 ? (
+          <p>We currently have no cars available for sale</p>
+        ) : (
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>View</th>
+              </tr>
+            </thead>
+            <tbody>
+              {carsForSale &&
+                carsForSale?.map((car) => {
+                  return (
+                    <tr key={car.href} onClick={handleViewCar}>
+                      <td>{car.model.manufacturer.name}</td>
+                      <td>{car.model.name}</td>
+                      <td>{car.year}</td>
+                      <td>
+                        <Button text="View" value={car.href} />
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{car.color}</td>
-                      <td>{car.vin}</td>
-                      <td>100,000</td>
-                      <td>12</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            );
-          })}
+                  );
+                })}
+            </tbody>
+          </table>
+        )}
       </div>
+      {carsForSale?.length === 0 ? (
+        <p></p>
+      ) : (
+        <div className="col-lg-4 car-detail-view ">
+          {selectedCar &&
+            selectedCar.map((car) => {
+              return (
+                <div key={car.id}>
+                  <h2>
+                    {car.year} {car.model.manufacturer.name} {car.model.name}
+                  </h2>
+                  <hr></hr>
+
+                  <img
+                    className="car-detail-image"
+                    src={`${car.model.picture_url}`}
+                    alt={`${car.model.name}`}
+                  />
+                  <hr></hr>
+
+                  <h4>Details</h4>
+
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Color</th>
+                        <th>VIN</th>
+                        <th>Miles</th>
+                        <th>Seats</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{car.color}</td>
+                        <td>{car.vin}</td>
+                        <td>100,000</td>
+                        <td>12</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              );
+            })}
+        </div>
+      )}
       <div className="col-12">
         <FakeSalespeople />
       </div>
