@@ -13,7 +13,7 @@ Team:
 
 ## Service microservice
 
-The Service Microservice integrated with the Inventory Microservice through a poller that runs every one second to pull the newest inventory information form Automobiles. It lives in the AutomobileVO model and gets the VIN and sold status of the automobiles.
+The Service Microservice integrated with the Inventory Microservice through a poller that runs every one second to pull the newest inventory information from Automobiles. It lives in the AutomobileVO model and gets the VIN and sold status of the automobiles.
 
 ### AutomboileVO
 
@@ -100,6 +100,8 @@ Example JSON response:
 	"employee_id": "jfry"
 }
 ```
+
+### Service Appointments
 
 Along with the technicians, we can list, create, update, and delete vehicle service appointments.
 
@@ -249,5 +251,249 @@ and receive this JSON response like this:
 
 ## Sales microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+The Sales Microservice integrated with the Inventory Microservice through a poller that runs every one second to pull the newest inventory information from Automobiles. It lives in the AutomobileVO model and gets the VIN and sold status of the automobiles.
+
+### AutomboileVO
+
+The Automobile VO endpoint is
+
+> `:8090/api/automobiles/`
+
+and it only accepts GET requests.
+
+Example JSON response:
+
+```
+{
+	"autos": [
+		{
+			"id": 19,
+			"vin": "MDI93HD",
+			"sold": true
+		},
+		{
+			"id": 21,
+			"vin": "FD3rf",
+			"sold": false
+		},
+		{
+			"id": 23,
+			"vin": "ND893DN",
+			"sold": false
+		}
+	]
+}
+```
+
+### Salespeople
+
+@GET and @POST to list and create salespeople, respectively.
+
+> `http://localhost:8090/api/salespeople/`
+
+@GET example JSON response:
+
+```
+{
+	"salespeople": [
+		{
+			"id": 5,
+			"first_name": "Mitch",
+			"last_name": "Hedberg",
+			"employee_id": "mhedberg"
+		},
+		{
+			"id": 6,
+			"first_name": "John",
+			"last_name": "Rangel",
+			"employee_id": "jrangel"
+		},
+		{
+			"id": 7,
+			"first_name": "from",
+			"last_name": "insomnia",
+			"employee_id": "finsomnia"
+		}
+	]
+}
+```
+
+@POST example:
+
+To create send:
+
+```
+{
+	"first_name": "from",
+	"last_name": "insomnia",
+	"employee_id": "finsomnia"
+}
+```
+
+Response:
+
+```
+{
+	"id": 7,
+	"first_name": "from",
+	"last_name": "insomnia",
+	"employee_id": "finsomnia"
+}
+```
+
+To delete, send a @DELETE request to:
+
+> `http://localhost:8090/api/salespeople/<int:id>/`
+
+And receive this JSON Response:
+
+```
+"they were fired"
+```
+
+### Salespeople
+
+You can list, create, and delete customers.
+
+@GET and @POST
+
+> `http://localhost:8090/api/customers/`
+
+To list salespeople send a @GET request and receive this example JSON response:
+
+```
+{
+	"customers": [
+		{
+			"id": 13,
+			"first_name": "Customer",
+			"last_name": "1",
+			"address": "111 Main St Houston, TX 77380",
+			"phone_number": "0123456789"
+		},
+		{
+			"id": 14,
+			"first_name": "Customer",
+			"last_name": "2",
+			"address": "fdsa",
+			"phone_number": "89213"
+		}
+	]
+}
+```
+
+To create a customer, send a @POST request.
+
+Post request needs this data:
+
+```
+{
+	"first_name": "great",
+	"last_name": "customer",
+	"address": "I'm not sure why I made this a text field.",
+	"phone_number": "0123456789"
+}
+```
+
+and receive this JSON Response:
+
+```
+{
+	"id": 15,
+	"first_name": "great",
+	"last_name": "customer",
+	"address": "I'm not sure why I made this a text field.",
+	"phone_number": "0123456789"
+}
+```
+
+Send a @DELETE request to:
+
+> `http://localhost:8090/api/customers/<int:id>/`
+
+And receive a success JSON message.
+
+### Sales
+
+You can list, create, and delete vehicle sales.
+
+@GET and @POST
+
+> `http://localhost:8090/api/sales/`
+
+To list sales, send a @GET request and receive this example JSON response:
+
+```
+{
+	"sales": [
+		{
+			"id": 20,
+			"price": 10100,
+			"automobile": {
+				"id": 11,
+				"vin": "B7830DN",
+				"sold": true
+			},
+			"salesperson": {
+				"id": 5,
+				"first_name": "Mitch",
+				"last_name": "Hedberg",
+				"employee_id": "mhedberg"
+			},
+			"customer": {
+				"id": 13,
+				"first_name": "Customer",
+				"last_name": "1",
+				"address": "111 Main St Houston, TX 77380",
+				"phone_number": "0123456789"
+			}
+		}
+    ]
+}
+```
+
+To create a sale send a @POST request with this data:
+
+```
+{
+	"price": "10002",
+	"automobile": 39,
+	"salesperson": 5,
+	"customer": 13
+}
+```
+
+where the automobile, salesperson, and customer are the respective id's.
+
+Receive this JSON resposne:
+
+```
+{
+	"id": 50,
+	"price": "10002",
+	"automobile": {
+		"id": 39,
+		"vin": "MDI93HD",
+		"sold": true
+	},
+	"salesperson": {
+		"id": 5,
+		"first_name": "Mitch",
+		"last_name": "Hedberg",
+		"employee_id": "mhedberg"
+	},
+	"customer": {
+		"id": 13,
+		"first_name": "Customer",
+		"last_name": "1",
+		"address": "111 Main St Houston, TX 77380",
+		"phone_number": "0123456789"
+	}
+}
+```
+
+To delete a sale, send a @DELETE request to:
+
+> `http://localhost:8090/api/sales/<int:id>/`
+
+and receive a success message.
