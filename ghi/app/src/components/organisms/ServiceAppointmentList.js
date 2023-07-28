@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import UpdateApptButton from "../molecules/UpdateApptButton";
 import FormatDate from "../molecules/FormatDate";
 import FormatTime from "../molecules/FormatTime";
+import HandleDelete from "../molecules/HandleDelete";
 
 export default function ServiceAppointList() {
   const [sold, setSold] = useState([]);
@@ -92,6 +93,9 @@ export default function ServiceAppointList() {
                       status="Finished"
                       text="Finish"
                       className="finish-appt-button"
+                    />
+                    <HandleDelete
+                      url={`http://localhost:8070/api/appointments/${appt.id}/`}
                     />
                   </td>
                 </tr>

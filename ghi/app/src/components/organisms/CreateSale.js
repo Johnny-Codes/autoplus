@@ -62,6 +62,10 @@ export default function CreateSale() {
         };
         try {
           const response = await fetch(updateUrl, fetchConfig);
+          if (response.ok) {
+            setFormData({});
+            window.location.reload();
+          }
         } catch (error) {
           console.log("error", error);
         }

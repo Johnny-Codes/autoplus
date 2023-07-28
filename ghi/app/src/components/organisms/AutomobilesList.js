@@ -1,6 +1,7 @@
 import React from "react";
 import useApi from "../../hooks/useApi";
 import "./AutomobilesList.css";
+import HandleDelete from "../molecules/HandleDelete";
 
 export default function AutomobileList() {
   const data = useApi({ url: "http://localhost:8100/api/automobiles/" });
@@ -19,6 +20,7 @@ export default function AutomobileList() {
             <th>Model</th>
             <th>Manufacturer</th>
             <th>Sold</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +34,11 @@ export default function AutomobileList() {
                   <td>{automobile.model.name}</td>
                   <td>{automobile.model.manufacturer.name}</td>
                   <td>{automobile.sold === false ? "No" : "Yes"}</td>
+                  <td>
+                    <HandleDelete
+                      url={`	http://localhost:8100/api/automobiles/${automobile.vin}/`}
+                    />
+                  </td>
                 </tr>
               );
             })}

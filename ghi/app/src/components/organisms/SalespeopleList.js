@@ -1,5 +1,6 @@
 import React from "react";
 import useApi from "../../hooks/useApi";
+import HandleDelete from "../molecules/HandleDelete";
 
 export default function SalespeopleList() {
   const sData = useApi({ url: "http://localhost:8090/api/salespeople/" });
@@ -13,6 +14,7 @@ export default function SalespeopleList() {
           <tr>
             <th>Name</th>
             <th>Employee ID</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +24,11 @@ export default function SalespeopleList() {
                 <tr key={sales.employee_id}>
                   <td>{`${sales.first_name} ${sales.last_name}`}</td>
                   <td>{sales.employee_id}</td>
+                  <td>
+                    <HandleDelete
+                      url={`http://localhost:8090/api/salespeople/${sales.id}/`}
+                    />
+                  </td>
                 </tr>
               );
             })}
