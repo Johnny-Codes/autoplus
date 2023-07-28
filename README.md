@@ -51,7 +51,7 @@ Example JSON response:
 
 > `:8070/api/technicians/`
 
-@GET requests return a list of technicians in the system.
+GET requests return a list of technicians in the system.
 
 Example JSON response:
 
@@ -74,7 +74,7 @@ Example JSON response:
 }
 ```
 
-To create a technician, you can @POST. You need a "first_name", "last_name", and "employee_id" all of which are strings.
+To create a technician, you can POST. You need a "first_name", "last_name", and "employee_id" all of which are strings.
 
 Example POST request to create a technician:
 
@@ -88,7 +88,7 @@ Example POST request to create a technician:
 
 > `:8070/api/technicians/<int:id>/`
 
-To delete a technician, send a @DELETE request containing the id of the technician.
+To delete a technician, send a DELETE request containing the id of the technician.
 
 Example JSON response:
 
@@ -107,7 +107,7 @@ Along with the technicians, we can list, create, update, and delete vehicle serv
 
 To list or create new Appointments:
 
-@GET
+GET
 
 > `http://localhost:8070/api/appointments/`
 
@@ -148,7 +148,7 @@ Example JSON response:
 }
 ```
 
-@POST
+POST
 
 Example JSON post request to create an appointment. Need the technician id (not to be confused with the technician employee_id)
 
@@ -162,7 +162,7 @@ Example JSON post request to create an appointment. Need the technician id (not 
 }
 ```
 
-To cancel an appointment send a @PUT request to:
+To cancel an appointment send a PUT request to:
 
 > `http://localhost:8070/api/appointments/<int:id>/cancel/`
 
@@ -194,7 +194,7 @@ Example JSON response:
 }
 ```
 
-To finish an appointment send a @PUT request to :
+To finish an appointment send a PUT request to :
 
 > `http://localhost:8070/api/appointments/20/finish/`
 
@@ -226,7 +226,7 @@ Example JSON response:
 }
 ```
 
-And finally, to delete an appointment, send a @DELETE request to:
+And finally, to delete an appointment, send a DELETE request to:
 
 > `http://localhost:8070/api/appointments/<int:id>/`
 
@@ -287,11 +287,11 @@ Example JSON response:
 
 ### Salespeople
 
-@GET and @POST to list and create salespeople, respectively.
+GET and POST to list and create salespeople, respectively.
 
 > `http://localhost:8090/api/salespeople/`
 
-@GET example JSON response:
+GET example JSON response:
 
 ```
 {
@@ -318,7 +318,7 @@ Example JSON response:
 }
 ```
 
-@POST example:
+POST example:
 
 To create send:
 
@@ -341,7 +341,7 @@ Response:
 }
 ```
 
-To delete, send a @DELETE request to:
+To delete, send a DELETE request to:
 
 > `http://localhost:8090/api/salespeople/<int:id>/`
 
@@ -355,11 +355,11 @@ And receive this JSON Response:
 
 You can list, create, and delete customers.
 
-@GET and @POST
+GET and POST
 
 > `http://localhost:8090/api/customers/`
 
-To list salespeople send a @GET request and receive this example JSON response:
+To list salespeople send a GET request and receive this example JSON response:
 
 ```
 {
@@ -382,7 +382,7 @@ To list salespeople send a @GET request and receive this example JSON response:
 }
 ```
 
-To create a customer, send a @POST request.
+To create a customer, send a POST request.
 
 Post request needs this data:
 
@@ -407,7 +407,7 @@ and receive this JSON Response:
 }
 ```
 
-Send a @DELETE request to:
+Send a DELETE request to:
 
 > `http://localhost:8090/api/customers/<int:id>/`
 
@@ -417,11 +417,11 @@ And receive a success JSON message.
 
 You can list, create, and delete vehicle sales.
 
-@GET and @POST
+GET and POST
 
 > `http://localhost:8090/api/sales/`
 
-To list sales, send a @GET request and receive this example JSON response:
+To list sales, send a GET request and receive this example JSON response:
 
 ```
 {
@@ -452,7 +452,7 @@ To list sales, send a @GET request and receive this example JSON response:
 }
 ```
 
-To create a sale send a @POST request with this data:
+To create a sale send a POST request with this data:
 
 ```
 {
@@ -492,7 +492,7 @@ Receive this JSON resposne:
 }
 ```
 
-To delete a sale, send a @DELETE request to:
+To delete a sale, send a DELETE request to:
 
 > `http://localhost:8090/api/sales/<int:id>/`
 
