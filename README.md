@@ -134,9 +134,9 @@ Example JSON response:
 			"id": 60,
 			"vin": "hkfsd90",
 			"date_time": "2023-07-26T12:15:00+00:00",
-			"reason": "dsfa",
+			"reason": "Oil Change",
 			"status": "Created",
-			"customer": "fnkljvsda0",
+			"customer": "Ray Finkle",
 			"technician": {
 				"id": 23,
 				"first_name": "Paul",
